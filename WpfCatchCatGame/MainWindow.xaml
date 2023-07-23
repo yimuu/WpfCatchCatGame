@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:WpfCatchCatGame"
         xmlns:sprite="clr-namespace:WpfCatchCatGame.Sprites"
         mc:Ignorable="d"
@@ -25,8 +26,10 @@
                 <Style TargetType="sprite:Block">
                     <Setter Property="Canvas.Top" Value="{Binding ActualY}" />
                     <Setter Property="Canvas.Left" Value="{Binding ActualX}" />
+                    
                 </Style>
             </ItemsControl.ItemContainerStyle>
+            
         </ItemsControl>
         
         <Button Grid.Row="2" Content="重置" FontSize="20" Margin="10" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left"/>

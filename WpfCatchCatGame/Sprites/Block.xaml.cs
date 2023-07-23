@@ -27,23 +27,60 @@ namespace WpfCatchCatGame.Sprites
 
         public const double GridSize = 50;
 
-        private bool isWall = false;
+        private static readonly DependencyProperty RadiusProperty = DependencyProperty.Register(
+                    nameof(Radius),
+            typeof(double),
+            typeof(Block),
+            new FrameworkPropertyMetadata(
+                 GridSize * 0.9,
+                 FrameworkPropertyMetadataOptions.None,
+                 null,
+                 null
+                 )
+            );
+
+        public static readonly DependencyProperty XProperty = DependencyProperty.Register(
+                    "X", //属性名
+            typeof(double),
+            typeof(Block),
+            new FrameworkPropertyMetadata(
+                 (double)0,
+                 FrameworkPropertyMetadataOptions.None, //不特定界面修改
+                                                        //不需要属性改变回调
+                 null,//new PropertyChangedCallback(QXSpiritInvalidated),
+                      //不使用强制回调
+                 null
+                 )
+            );
+
+        public static readonly DependencyProperty YProperty = DependencyProperty.Register(
+                    "Y",
+            typeof(double),
+            typeof(Block),
+            new FrameworkPropertyMetadata(
+                 (double)0,
+                 FrameworkPropertyMetadataOptions.None,
+                 null,
+                 null
+                 )
+            );
+
+        private static readonly DependencyProperty ColorProperty = DependencyProperty.Register(
+            nameof(Color),
+            typeof(Color),
+            typeof(Block),
+            new PropertyMetadata((Color)ColorConverter.ConvertFromString("#b3d9ff")));
+
+        private static readonly DependencyProperty IsWallProperty = DependencyProperty.Register(
+            nameof(IsWall),
+            typeof(bool),
+            typeof(Block),
+            new PropertyMetadata(false));
 
         public bool IsWall
         {
-            get => isWall;
-            set
-            {
-                isWall = value;
-                if (isWall)
-                {
-                    Color = (Color)ColorConverter.ConvertFromString("#003366");
-                }
-                else
-                {
-                    Color = (Color)ColorConverter.ConvertFromString("#b3d9ff");
-                }
-            }
+            get => (bool)GetValue(IsWallProperty);
+            set => SetValue(IsWallProperty, value);
         }
 
         public double Radius
@@ -73,52 +110,6 @@ namespace WpfCatchCatGame.Sprites
             get => (Color)GetValue(ColorProperty);
             set => SetValue(ColorProperty, value);
         }
-
-        private static readonly DependencyProperty RadiusProperty = DependencyProperty.Register(
-                    nameof(Radius),
-            typeof(double),
-            typeof(Block),
-            new FrameworkPropertyMetadata(
-                 GridSize * 0.9,
-                 FrameworkPropertyMetadataOptions.None,
-                 null,
-                 null
-                 )
-            );
-
-        public static readonly DependencyProperty XProperty = DependencyProperty.Register(
-                    "X", //属性名
-            typeof(double), 
-            typeof(Block), 
-            new FrameworkPropertyMetadata(
-                 (double)0,
-                 FrameworkPropertyMetadataOptions.None, //不特定界面修改
-                                                        //不需要属性改变回调
-                 null,//new PropertyChangedCallback(QXSpiritInvalidated),
-                      //不使用强制回调
-                 null
-                 )
-            );
-
-        public static readonly DependencyProperty YProperty = DependencyProperty.Register(
-                    "Y",
-            typeof(double),
-            typeof(Block),
-            new FrameworkPropertyMetadata(
-                 (double)0,
-                 FrameworkPropertyMetadataOptions.None,
-                 null,
-                 null
-                 )
-            );
-
-        private static readonly DependencyProperty ColorProperty = DependencyProperty.Register(
-            nameof(Color),
-            typeof(Color),
-            typeof(Block),
-            new PropertyMetadata((Color)ColorConverter.ConvertFromString("#b3d9ff")));
-
-
         /// <summary>
         /// 实际在画板上的 X 坐标
         /// </summary>

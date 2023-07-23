@@ -3,16 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:WpfCatchCatGame.Sprites"
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             x:Name="block"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="100">
+
+    <behaviors:Interaction.Triggers>
+        <behaviors:EventTrigger EventName="MouseLeftButtonDown">
+            <behaviors:ChangePropertyAction PropertyName="IsWall" Value="True" />
+        </behaviors:EventTrigger>
+
+        <behaviors:PropertyChangedTrigger Binding="{Binding IsWall}">
+            <behaviors:ControlStoryboardAction>
+                <behaviors:ControlStoryboardAction.Storyboard>
+                    <Storyboard AutoReverse="False">
+                        <ColorAnimation Storyboard.TargetName="block" Storyboard.TargetProperty="Color" To="#003366" Duration="0:0:0.5" />
+                    </Storyboard>
+                </behaviors:ControlStoryboardAction.Storyboard>
+            </behaviors:ControlStoryboardAction>
+        </behaviors:PropertyChangedTrigger>
+    </behaviors:Interaction.Triggers>
+    
     <Grid>
         <Ellipse Height="{Binding Radius}" Width="{Binding Radius}">
             <Ellipse.Fill>
                 <SolidColorBrush Color="{Binding Color}" />
             </Ellipse.Fill>
-             
         </Ellipse>
     </Grid>
 </UserControl>
