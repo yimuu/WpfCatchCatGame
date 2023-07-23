@@ -23,27 +23,59 @@ namespace WpfCatchCatGame.Sprites
         public Block()
         {
             InitializeComponent();
-
-            radius = GridSize * 0.9;
-            dx = radius * 0.5;
-            dy = radius * Math.Sqrt(3);
         }
 
         public const double GridSize = 50;
 
-        private double radius;
-        private double dx;
-        private double dy;
+        private bool isWall = false;
+
+        public bool IsWall
+        {
+            get => isWall;
+            set
+            {
+                isWall = value;
+                if (isWall)
+                {
+                    Color = (Color)ColorConverter.ConvertFromString("#003366");
+                }
+                else
+                {
+                    Color = (Color)ColorConverter.ConvertFromString("#b3d9ff");
+                }
+            }
+        }
 
         public double Radius
         {
             get => (double)GetValue(RadiusProperty);
             set => SetValue(RadiusProperty, value);
         }
+        /// <summary>
+        /// 精灵X坐标(关联属性)
+        /// </summary>
+        public double X
+        {
+            get => (double)GetValue(XProperty);
+            set => SetValue(XProperty, value);
+        }
+        /// <summary>
+        /// 精灵Y坐标(关联属性)
+        /// </summary>
+        public double Y
+        {
+            get => (double)GetValue(YProperty);
+            set => SetValue(YProperty, value);
+        }
 
+        public Color Color
+        {
+            get => (Color)GetValue(ColorProperty);
+            set => SetValue(ColorProperty, value);
+        }
 
         private static readonly DependencyProperty RadiusProperty = DependencyProperty.Register(
-            nameof(Radius),
+                    nameof(Radius),
             typeof(double),
             typeof(Block),
             new FrameworkPropertyMetadata(
@@ -54,16 +86,8 @@ namespace WpfCatchCatGame.Sprites
                  )
             );
 
-        /// <summary>
-        /// 精灵X坐标(关联属性)
-        /// </summary>
-        public double X
-        {
-            get { return (double)GetValue(XProperty); }
-            set { SetValue(XProperty, value); }
-        }
         public static readonly DependencyProperty XProperty = DependencyProperty.Register(
-            "X", //属性名
+                    "X", //属性名
             typeof(double), 
             typeof(Block), 
             new FrameworkPropertyMetadata(
@@ -76,16 +100,8 @@ namespace WpfCatchCatGame.Sprites
                  )
             );
 
-        /// <summary>
-        /// 精灵Y坐标(关联属性)
-        /// </summary>
-        public double Y
-        {
-            get { return (double)GetValue(YProperty); }
-            set { SetValue(YProperty, value); }
-        }
         public static readonly DependencyProperty YProperty = DependencyProperty.Register(
-            "Y",
+                    "Y",
             typeof(double),
             typeof(Block),
             new FrameworkPropertyMetadata(
@@ -95,6 +111,12 @@ namespace WpfCatchCatGame.Sprites
                  null
                  )
             );
+
+        private static readonly DependencyProperty ColorProperty = DependencyProperty.Register(
+            nameof(Color),
+            typeof(Color),
+            typeof(Block),
+            new PropertyMetadata((Color)ColorConverter.ConvertFromString("#b3d9ff")));
 
 
         /// <summary>

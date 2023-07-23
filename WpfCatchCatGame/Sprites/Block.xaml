@@ -8,6 +8,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="100">
     <Grid>
-        <Ellipse Height="{Binding Radius}" Width="{Binding Radius}" Fill="#b3d9ff" />
+        <Ellipse Height="{Binding Radius}" Width="{Binding Radius}">
+            <Ellipse.Fill>
+                <SolidColorBrush Color="{Binding Color}" />
+            </Ellipse.Fill>
+             
+        </Ellipse>
     </Grid>
 </UserControl>
