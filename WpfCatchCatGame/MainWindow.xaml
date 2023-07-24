@@ -8,30 +8,46 @@
         xmlns:sprite="clr-namespace:WpfCatchCatGame.Sprites"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1000">
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock Text="点击小圆点，围住猫" FontSize="20" Margin="10 10 10 30" HorizontalAlignment="Center"/>
-        
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding Blocks}" HorizontalAlignment="Left" Margin="220 0">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <Canvas />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemContainerStyle>
-                <Style TargetType="sprite:Block">
-                    <Setter Property="Canvas.Top" Value="{Binding ActualY}" />
-                    <Setter Property="Canvas.Left" Value="{Binding ActualX}" />
-                    
-                </Style>
-            </ItemsControl.ItemContainerStyle>
-            
-        </ItemsControl>
-        
-        <Button Grid.Row="2" Content="重置" FontSize="20" Margin="10" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left"/>
+        <Grid HorizontalAlignment="Center" Background="#eeeeee" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding StatusText}" FontSize="20" Margin="10 10 10 30" HorizontalAlignment="Center"/>
+
+            <Viewbox 
+                 Grid.Row="1">
+                <Canvas Height="{Binding Height}" Width="{Binding Width}" HorizontalAlignment="Center" Margin="60, 0">
+                    <ItemsControl ItemsSource="{Binding Blocks}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="sprite:Block">
+                                <Setter Property="Canvas.Top" Value="{Binding ActualY}" />
+                                <Setter Property="Canvas.Left" Value="{Binding ActualX}" />
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                    </ItemsControl>
+                </Canvas>
+            </Viewbox>
+
+            <Button Grid.Row="2" Content="重置" FontSize="20" Margin="20 0 0 10" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left"/>
+        </Grid>
+        <TextBlock Grid.Row="1">
+            Test
+        </TextBlock>
     </Grid>
+    
 </Window>

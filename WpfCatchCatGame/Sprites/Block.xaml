@@ -11,9 +11,9 @@
              d:DesignHeight="100" d:DesignWidth="100">
 
     <behaviors:Interaction.Triggers>
-        <behaviors:EventTrigger EventName="MouseLeftButtonDown">
+        <!--<behaviors:EventTrigger EventName="MouseLeftButtonDown">
             <behaviors:ChangePropertyAction PropertyName="IsWall" Value="True" />
-        </behaviors:EventTrigger>
+        </behaviors:EventTrigger>-->
 
         <behaviors:PropertyChangedTrigger Binding="{Binding IsWall}">
             <behaviors:ControlStoryboardAction>
