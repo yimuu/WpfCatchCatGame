@@ -18,52 +18,14 @@ namespace WpfCatchCatGame.Sprites
     /// <summary>
     /// Interaction logic for Block.xaml
     /// </summary>
-    public partial class Block : UserControl
+    public partial class Block : Sprite
     {
         public Block()
         {
             InitializeComponent();
         }
 
-        private const double GridSize = MainViewModel.GridSize;
-
-        private static readonly DependencyProperty RadiusProperty = DependencyProperty.Register(
-                    nameof(Radius),
-            typeof(double),
-            typeof(Block),
-            new FrameworkPropertyMetadata(
-                 GridSize * 0.9,
-                 FrameworkPropertyMetadataOptions.None,
-                 null,
-                 null
-                 )
-            );
-
-        public static readonly DependencyProperty XProperty = DependencyProperty.Register(
-                    "X", //属性名
-            typeof(double),
-            typeof(Block),
-            new FrameworkPropertyMetadata(
-                 (double)0,
-                 FrameworkPropertyMetadataOptions.None, //不特定界面修改
-                                                        //不需要属性改变回调
-                 null,//new PropertyChangedCallback(QXSpiritInvalidated),
-                      //不使用强制回调
-                 null
-                 )
-            );
-
-        public static readonly DependencyProperty YProperty = DependencyProperty.Register(
-                    "Y",
-            typeof(double),
-            typeof(Block),
-            new FrameworkPropertyMetadata(
-                 (double)0,
-                 FrameworkPropertyMetadataOptions.None,
-                 null,
-                 null
-                 )
-            );
+        
 
         private static readonly DependencyProperty ColorProperty = DependencyProperty.Register(
             nameof(Color),
@@ -83,28 +45,7 @@ namespace WpfCatchCatGame.Sprites
             set => SetValue(IsWallProperty, value);
         }
 
-        public double Radius
-        {
-            get => (double)GetValue(RadiusProperty);
-            set => SetValue(RadiusProperty, value);
-        }
-        /// <summary>
-        /// 精灵X坐标(关联属性)
-        /// </summary>
-        public double X
-        {
-            get => (double)GetValue(XProperty);
-            set => SetValue(XProperty, value);
-        }
-        /// <summary>
-        /// 精灵Y坐标(关联属性)
-        /// </summary>
-        public double Y
-        {
-            get => (double)GetValue(YProperty);
-            set => SetValue(YProperty, value);
-        }
-
+        
         public Color Color
         {
             get => (Color)GetValue(ColorProperty);

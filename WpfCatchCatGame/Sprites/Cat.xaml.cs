@@ -18,56 +18,13 @@ namespace WpfCatchCatGame.Sprites
     /// <summary>
     /// Interaction logic for Cat.xaml
     /// </summary>
-    public partial class Cat : UserControl
+    public partial class Cat : Sprite
     {
         public Cat()
         {
             InitializeComponent();
-        }
 
-        private const double GridSize = MainViewModel.GridSize;
-
-        public static readonly DependencyProperty XProperty = DependencyProperty.Register(
-                    "X", 
-            typeof(double),
-            typeof(Block),
-            new FrameworkPropertyMetadata(
-                 (double)0,
-                 FrameworkPropertyMetadataOptions.None, 
-                 null,
-                 null
-                 )
-            );
-
-        public static readonly DependencyProperty YProperty = DependencyProperty.Register(
-                    "Y",
-            typeof(double),
-            typeof(Block),
-            new FrameworkPropertyMetadata(
-                 (double)0,
-                 FrameworkPropertyMetadataOptions.None,
-                 null,
-                 null
-                 )
-            );
-
-
-        /// <summary>
-        /// 精灵X坐标(关联属性)
-        /// </summary>
-        public double X
-        {
-            get => (double)GetValue(XProperty);
-            set => SetValue(XProperty, value);
-        }
-
-        /// <summary>
-        /// 精灵Y坐标(关联属性)
-        /// </summary>
-        public double Y
-        {
-            get => (double)GetValue(YProperty);
-            set => SetValue(YProperty, value);
+             
         }
 
         /// <summary>

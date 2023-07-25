@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WpfCatchCatGame.Sprites.Block"
+﻿<local:Sprite x:Class="WpfCatchCatGame.Sprites.Block"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -33,4 +33,4 @@
             </Ellipse.Fill>
         </Ellipse>
     </Grid>
-</UserControl>
+</local:Sprite>
