@@ -40,14 +40,24 @@
                             </Style>
                         </ItemsControl.ItemContainerStyle>
                     </ItemsControl>
-                    <sprite:Cat />
+   
+                    <ContentControl Content="{Binding Cat}" Canvas.Left="{Binding Cat.ActualX}" Canvas.Top="{Binding Cat.ActualY}"/>
                 </Canvas>
             </Viewbox>
 
             <Button Grid.Row="2" Content="重置" FontSize="20" Margin="20 0 0 10" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left"/>
         </Grid>
-        <TextBlock Grid.Row="1">
+        <TextBlock Grid.Row="1" Margin=" 100 0">
             Test
+            <TextBlock.RenderTransform>
+                <ScaleTransform ScaleX="1" CenterX="0.5" CenterY="1" />
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock Grid.Row="1" Margin=" 100 0">
+            Test
+            <TextBlock.RenderTransform>
+                <ScaleTransform ScaleX="-1" CenterX="0.5" CenterY="0.5" />
+            </TextBlock.RenderTransform>
         </TextBlock>
     </Grid>
     

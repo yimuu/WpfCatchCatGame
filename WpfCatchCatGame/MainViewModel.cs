@@ -23,6 +23,9 @@ namespace WpfCatchCatGame
 
         public List<Block> Blocks { get; } = new List<Block>();
 
+        [ObservableProperty]
+        public Cat cat = new Cat();
+
         public MainViewModel()
         {
             InitBlocks();

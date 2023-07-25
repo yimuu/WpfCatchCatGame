@@ -5,12 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              xmlns:local="clr-namespace:WpfCatchCatGame.Sprites"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <svgc:SvgViewbox IsHitTestVisible="False" Height="{Binding Radius}" Width="{Binding Radius}"  Source="/Assets/Images/left/1.svg">
+        <svgc:SvgViewbox x:Name="cat" IsHitTestVisible="False">
             <svgc:SvgViewbox.RenderTransform>
-                <TranslateTransform Y="-5" />
+                <ScaleTransform ScaleX="-1" />
             </svgc:SvgViewbox.RenderTransform>
         </svgc:SvgViewbox>
     </Grid>

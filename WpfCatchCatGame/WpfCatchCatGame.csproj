@@ -9,6 +9,10 @@
 
   <ItemGroup>
     <None Remove="Assets\Images\left\1.svg" />
+    <None Remove="Assets\Images\left\2.svg" />
+    <None Remove="Assets\Images\left\3.svg" />
+    <None Remove="Assets\Images\left\4.svg" />
+    <None Remove="Assets\Images\left\5.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +24,10 @@
 
   <ItemGroup>
     <Resource Include="Assets\Images\left\1.svg" />
+    <Resource Include="Assets\Images\left\2.svg" />
+    <Resource Include="Assets\Images\left\3.svg" />
+    <Resource Include="Assets\Images\left\4.svg" />
+    <Resource Include="Assets\Images\left\5.svg" />
   </ItemGroup>
 
 </Project>

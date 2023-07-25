@@ -28,16 +28,16 @@ namespace WpfCatchCatGame.Sprites
                     "X",
             typeof(double),
             typeof(Block),
-            new FrameworkPropertyMetadata(
-                 (double)0,
-                 FrameworkPropertyMetadataOptions.None,
-                 null,
-                 null
-                 )
-            );
+            new FrameworkPropertyMetadata(new PropertyChangedCallback(OnXYChanged)));
 
         public static readonly DependencyProperty YProperty = DependencyProperty.Register(
                     "Y",
+            typeof(double),
+            typeof(Block),
+            new FrameworkPropertyMetadata(new PropertyChangedCallback(OnXYChanged)));
+
+        public static readonly DependencyProperty ActualXProperty = DependencyProperty.Register(
+                    "ActualX",
             typeof(double),
             typeof(Block),
             new FrameworkPropertyMetadata(
@@ -47,6 +47,31 @@ namespace WpfCatchCatGame.Sprites
                  null
                  )
             );
+
+        public static readonly DependencyProperty ActualYProperty = DependencyProperty.Register(
+                    "ActualY",
+            typeof(double),
+            typeof(Block),
+            new FrameworkPropertyMetadata(
+                 (double)0,
+                 FrameworkPropertyMetadataOptions.None,
+                 null,
+                 null
+                 )
+            );
+
+        private static void OnXYChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            Sprite sprite = (Sprite)d;
+            if (e.Property == XProperty)
+            {
+                sprite.ActualX = sprite.X * GridSize + (((int)sprite.Y & 1) == 0 ? 0 : GridSize / 2);
+            }
+            if (e.Property == YProperty)
+            {
+                sprite.ActualY = sprite.Y * GridSize - sprite.Y * 6;
+            }
+        }
 
         public double Radius
         {
@@ -73,6 +98,17 @@ namespace WpfCatchCatGame.Sprites
             set => SetValue(YProperty, value);
         }
 
+        public double ActualX
+        {
+            get => (double)GetValue(ActualXProperty);
+            set => SetValue(ActualXProperty, value);
+        }
+
+        public double ActualY
+        {
+            get => (double)(GetValue(ActualYProperty));
+            set => SetValue(ActualYProperty, value);
+        }
      
     }
 }
