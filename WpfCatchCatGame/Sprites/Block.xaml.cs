@@ -24,9 +24,7 @@ namespace WpfCatchCatGame.Sprites
         {
             InitializeComponent();
         }
-
         
-
         private static readonly DependencyProperty ColorProperty = DependencyProperty.Register(
             nameof(Color),
             typeof(Color),
@@ -51,14 +49,5 @@ namespace WpfCatchCatGame.Sprites
             get => (Color)GetValue(ColorProperty);
             set => SetValue(ColorProperty, value);
         }
-
-        /// <summary>
-        /// 实际在画板上的 X 坐标
-        /// </summary>
-        public double ActualX => X * GridSize + (((int)Y & 1) == 0 ? 0 : GridSize / 2);
-        /// <summary>
-        /// 实际在画板上的 Y 坐标
-        /// </summary>
-        public double ActualY => Y * GridSize - Y * 6;
     }
 }

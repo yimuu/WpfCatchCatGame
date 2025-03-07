@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,9 @@ namespace WpfCatchCatGame
         public MainViewModel()
         {
             InitBlocks();
+            cat.X = 5;
+            cat.Y = 5;
+            cat.Direction = CatDirection.Right;
         }
 
         private void InitBlocks()
@@ -61,6 +65,15 @@ namespace WpfCatchCatGame
             }
             block.IsWall = true;
             StatusText = $"您点击了 ({(int)block.X}, {(int)block.Y})";
+
+            MoveCat(Cat.X - 1, Cat.Y);
+        }
+
+        private void MoveCat(double targetX, double targetY)
+        {
+            // 这里可以添加更复杂的移动逻辑, 例如寻路算法
+            // 简单起见，直接移动到目标位置
+            Cat.AnimateTo(targetX, targetY);
         }
     }
 }

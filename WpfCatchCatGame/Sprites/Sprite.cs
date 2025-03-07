@@ -15,7 +15,7 @@ namespace WpfCatchCatGame.Sprites
         private static readonly DependencyProperty RadiusProperty = DependencyProperty.Register(
                     nameof(Radius),
             typeof(double),
-            typeof(Block),
+            typeof(Sprite),
             new FrameworkPropertyMetadata(
                  GridSize * 0.9,
                  FrameworkPropertyMetadataOptions.None,
@@ -27,19 +27,19 @@ namespace WpfCatchCatGame.Sprites
         public static readonly DependencyProperty XProperty = DependencyProperty.Register(
                     "X",
             typeof(double),
-            typeof(Block),
+            typeof(Sprite),
             new FrameworkPropertyMetadata(new PropertyChangedCallback(OnXYChanged)));
 
         public static readonly DependencyProperty YProperty = DependencyProperty.Register(
                     "Y",
             typeof(double),
-            typeof(Block),
+            typeof(Sprite),
             new FrameworkPropertyMetadata(new PropertyChangedCallback(OnXYChanged)));
 
         public static readonly DependencyProperty ActualXProperty = DependencyProperty.Register(
                     "ActualX",
             typeof(double),
-            typeof(Block),
+            typeof(Sprite),
             new FrameworkPropertyMetadata(
                  (double)0,
                  FrameworkPropertyMetadataOptions.None,
@@ -51,7 +51,7 @@ namespace WpfCatchCatGame.Sprites
         public static readonly DependencyProperty ActualYProperty = DependencyProperty.Register(
                     "ActualY",
             typeof(double),
-            typeof(Block),
+            typeof(Sprite),
             new FrameworkPropertyMetadata(
                  (double)0,
                  FrameworkPropertyMetadataOptions.None,
@@ -63,14 +63,15 @@ namespace WpfCatchCatGame.Sprites
         private static void OnXYChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             Sprite sprite = (Sprite)d;
-            if (e.Property == XProperty)
-            {
-                sprite.ActualX = sprite.X * GridSize + (((int)sprite.Y & 1) == 0 ? 0 : GridSize / 2);
-            }
-            if (e.Property == YProperty)
-            {
-                sprite.ActualY = sprite.Y * GridSize - sprite.Y * 6;
-            }
+            // 在 X 或 Y 改变时，同时更新 ActualX 和 ActualY
+            sprite.UpdateActualXY();
+        }
+
+        private void UpdateActualXY()
+        {
+            // 使用 SetValue 更新 ActualX 和 ActualY
+            SetValue(ActualXProperty, X * GridSize + (((int)Y & 1) == 0 ? 0 : GridSize / 2));
+            SetValue(ActualYProperty, Y * GridSize - Y * 6);
         }
 
         public double Radius
@@ -101,13 +102,13 @@ namespace WpfCatchCatGame.Sprites
         public double ActualX
         {
             get => (double)GetValue(ActualXProperty);
-            set => SetValue(ActualXProperty, value);
+            private set => SetValue(ActualXProperty, value);
         }
 
         public double ActualY
         {
             get => (double)(GetValue(ActualYProperty));
-            set => SetValue(ActualYProperty, value);
+            private set => SetValue(ActualYProperty, value);
         }
      
     }

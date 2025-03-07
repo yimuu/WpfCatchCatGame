@@ -9,10 +9,35 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <svgc:SvgViewbox x:Name="cat" IsHitTestVisible="False">
-            <svgc:SvgViewbox.RenderTransform>
-                <ScaleTransform ScaleX="-1" />
-            </svgc:SvgViewbox.RenderTransform>
-        </svgc:SvgViewbox>
+        <svgc:SvgBitmap x:Name="cat" IsHitTestVisible="False">
+            <svgc:SvgBitmap.Style>
+                <Style TargetType="svgc:SvgBitmap">
+                    <Setter Property="RenderTransformOrigin" Value="0.5, 0.5" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Direction}" Value="{x:Static local:CatDirection.BottomRight}">
+                            <Setter Property = "RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="-1"  />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Direction}" Value="{x:Static local:CatDirection.Right}">
+                            <Setter Property = "RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="-1" />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Direction}" Value="{x:Static local:CatDirection.TopRight}">
+                            <Setter Property = "RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="-1"  />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </svgc:SvgBitmap.Style>
+        </svgc:SvgBitmap>
     </Grid>
 </local:Sprite>
